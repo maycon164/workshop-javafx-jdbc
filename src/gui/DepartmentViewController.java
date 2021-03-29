@@ -60,6 +60,10 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		initializeNodes();
+	}
+
+	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -157,12 +161,12 @@ public class DepartmentViewController implements Initializable, DataChangeListen
 				throw new IllegalStateException("service is null");
 			}
 			try {
-				service.remove(obj);	
+				service.remove(obj);
 				updateTableView();
-			}catch (DbIntegrityException e) {
+			} catch (DbIntegrityException e) {
 				Alerts.showAlert("Error removing object", null, e.getMessage(), AlertType.ERROR);
 			}
-			
+
 		}
 	}
 
