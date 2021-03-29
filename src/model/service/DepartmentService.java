@@ -7,8 +7,17 @@ import model.dao.DepartmentDao;
 import model.entities.Department;
 
 public class DepartmentService {
-	DepartmentDao dep = DaoFactory.createDepartmentDao();
+	private DepartmentDao dep = DaoFactory.createDepartmentDao();
+	
 	public List<Department> findAll(){
 		return dep.findAll();
+	}
+	
+	public void saveOrUpdate(Department obj) {
+		if(obj.getId() == null) {
+			dep.insert(obj);
+		}else {
+			dep.update(obj);
+		}
 	}
 }
